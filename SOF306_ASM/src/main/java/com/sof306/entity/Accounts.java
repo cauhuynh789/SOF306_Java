@@ -58,6 +58,6 @@ public class Accounts implements Serializable{
 	   private List<Comments> comments;
 	   
 	   @JsonIgnore
-	   @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-	   List<Authorities> authorities;
+	   @OneToMany(mappedBy = "account")
+	   List<Authorities> authority;
 }

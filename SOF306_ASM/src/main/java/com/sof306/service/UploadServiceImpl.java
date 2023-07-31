@@ -6,10 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sof306.dao.UploadService;
 
-import jakarta.servlet.ServletContext;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 
 @Service
 public class UploadServiceImpl implements UploadService {

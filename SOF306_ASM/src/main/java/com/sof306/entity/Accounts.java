@@ -3,15 +3,16 @@ package com.sof306.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -42,9 +43,6 @@ public class Accounts implements Serializable{
 	   @Column(name = "Phone")
 	   private String phone;
 	
-	   @Column(name = "Roleid")
-	   private boolean roleId;
-	
 	   @Column(name = "Photo")	
 	   private String photo;
 	
@@ -52,10 +50,14 @@ public class Accounts implements Serializable{
 	   private boolean status;
 	   
 	   @JsonIgnore
-	   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	   @OneToMany(mappedBy = "account")
 	   private List<Orders> orders;
 	
 	   @JsonIgnore
-	   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	   @OneToMany(mappedBy = "account")
 	   private List<Comments> comments;
+	   
+	   @JsonIgnore
+	   @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+	   List<Authorities> authorities;
 }

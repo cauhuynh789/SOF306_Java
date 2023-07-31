@@ -33,19 +33,20 @@ public class AccountRestController {
 	}
 	
 	@PostMapping("/rest/accounts")
-	public Accounts post(@RequestBody Accounts account) {
-		dao.save(account);
-		return account;
+	public Accounts post(@RequestBody Accounts student) {
+		dao.save(student);
+		return student;
 	}
 	
 	@PutMapping("/rest/accounts/{email}")
-	public Accounts put(@PathVariable("email") String email, @RequestBody Accounts account) {
-		dao.save(account);
-		return account;
+	public Accounts put(@PathVariable("email") String email, @RequestBody Accounts student) {
+		dao.save(student);
+		return student;
 	}
 	
 	@DeleteMapping("/rest/accounts/{email}")
 	public void delete(@PathVariable("email") String email) {
 		dao.deleteById(email);
 	}
+
 }

@@ -1,8 +1,8 @@
 app.controller("accounts-ctrl", function ($scope, $http) {
     $scope.items = [];
     $scope.form = {};
-    $scope.init = () => {
-        // load products
+    $scope.load = () => {
+        // load accounts
         $http.get("/api/accounts").then(resp => {
             $scope.items = resp.data;
         });
@@ -12,10 +12,11 @@ app.controller("accounts-ctrl", function ($scope, $http) {
         $scope.form = {gender: true, photo: "default.jpg", status: true};
     }
 
-    $scope.edit = (item) => {
-        $http.get('/api/accounts/${item}').then(resp => {
+    $scope.edit = (accountId) => {
+        $http.get("/api/accounts/" + accountId).then(resp => {
             $scope.form = resp.data;
             console.log("Success", resp);
+            window.scrollTo(0, 0);
         }).catch(error => {
             console.log("Error", error);
         });
@@ -23,7 +24,7 @@ app.controller("accounts-ctrl", function ($scope, $http) {
 
     $scope.create = () => {
         var item = angular.copy($scope.form);
-        $http.post("/api/products", item).then(resp => {
+        $http.post("/api/accounts", item).then(resp => {
             resp.data.createDate = new Date(resp.data.createDate);
             $scope.items.push(resp.data);
             $scope.reset();
@@ -36,9 +37,10 @@ app.controller("accounts-ctrl", function ($scope, $http) {
 
     $scope.update = () => {
         var item = angular.copy($scope.form);
-        $http.put("/api/products/" + item.id, item).then(resp => {
-            var index = $scope.items.findIndex(p => p.id = item.id);
+        $http.put("/api/accounts/" + item.accountId, item).then(resp => {
+            var index = $scope.items.findIndex(p => p.accountId = item.accountId);
             $scope.items[index] = item;
+            $scope.load()
             alert("Cập nhật sản phẩm thành công");
         }, error => {
             alert("Cập nhật sản phẩm thất bại");
@@ -46,18 +48,19 @@ app.controller("accounts-ctrl", function ($scope, $http) {
         });
     }
 
-    $scope.remove = (item) => {
-        var item = angular.copy($scope.form);
-        $http.delete("/api/products/" + item.id).then(resp => {
-            var index = $scope.items.findIndex(p => p.id = item.id);
+    $scope.delete = (accountId) => {
+        $http.delete("/api/accounts/" + accountId).then(resp => {
+            var index = $scope.items.findIndex(item => item.accountId == accountId);
             $scope.items.splice(index, 1);
             $scope.reset();
+            console.log("Success", resp);
             alert("Xoá sản phẩm thành công");
-        }, error => {
+        }).catch(error => {
             alert("Xoá sản phẩm thất bại");
             console.log("Error", error);
         });
     }
+
 
     $scope.imageChanged = (files) => {
         var form = new FormData();
@@ -73,6 +76,7 @@ app.controller("accounts-ctrl", function ($scope, $http) {
             console.log("Error", error);
         });
     }
+
     $scope.pager = {
         page: 0,
         size: 10,
@@ -102,5 +106,6 @@ app.controller("accounts-ctrl", function ($scope, $http) {
             this.page = this.count - 1;
         }
     }
-    $scope.init();
+    $scope.load();
+    $scope.reset();
 });

@@ -42,13 +42,15 @@
                 </h3>
                 <div class="row">
                     <div class="col-sm-3">
+
                         <div style="width: 300px; height: 200px;">
-                            <img ng-src="/assets/images/accounts/{{ form.photo }}" class="rounded-circle" 
-                                 style="width: 210px; object-fit: contain;" ng-click="showFileDialog()">
+                            <img ng-src="/assets/images/accounts/{{form.photo}}" class="rounded-circle" style="width: 210px; object-fit: contain;" alt="{{ form.fullName }}">
                         </div>
                         
-                        <!-- Đây là một thẻ <input> ẩn, được sử dụng để tải lên tập tin ảnh -->
-                        <input type="file"  style="display:none" id="fileInput" ng-model="file">
+                        <div class="col-md-6">
+                            <label for="inputImage" class="form-label">Image</label>
+                            <input type="file" onchange="angular.element(this).scope().imageChanged(this.files)" class="form-control" id="inputImage">
+                        </div>
                   
                         <div class="mb-3 mt-3">
                             <label>Giới Tính:</label> <br>
@@ -63,19 +65,7 @@
                                 <label class="form-check-label" for="inputgenderNo">Nữ</label>
                             </div>
                         </div>
-                        <div class="mb-3 mt-3">
-                            <label>Quyền:</label> <br>
-                            <div class="form-check form-check-inline">
-                                <input ng-model="form.roleId" type="radio" ng-value="true" name="role"
-                                    class="form-check-input" id="inputroleYes">
-                                <label class="form-check-label" for="inputroleYes">Quản Trị</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input ng-model="form.roleId" type="radio" ng-value="false" name="role"
-                                    class="form-check-input" id="inputroleNo">
-                                <label class="form-check-label" for="inputroleNo">Người Dùng</label>
-                            </div>
-                        </div>
+                        
                         <div class="mb-3 mt-3">
                             <label>Trạng Thái:</label> <br>
                             <div class="form-check form-check-inline">
@@ -145,7 +135,7 @@
                 <th>Trạng Thái</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="st in items">
+            <tr ng-repeat="st in pager.items">
                 <td>{{st.accountId}}</td>
                 <td>{{st.email}}</td>
                 <td>{{st.fullName}}</td>
@@ -160,3 +150,14 @@
             </tr>
         </table>
 
+        <div class="mb-2">
+            <nav class="">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><button ng-click="pager.first()" class="page-link" href="#">First</button></li>
+                    <li class="page-item"><button ng-click="pager.prev()" class="page-link" href="#">Prev</button></li>
+                    <li class="page-item"><button class="page-link">{{pager.page + 1}}/{{pager.count}}</button></li>
+                    <li class="page-item"><button ng-click="pager.next()" class="page-link" href="#">Next</button></li>
+                    <li class="page-item"><button ng-click="pager.last()" class="page-link" href="#">Last</button></li>
+                </ul>
+            </nav>
+        </div>

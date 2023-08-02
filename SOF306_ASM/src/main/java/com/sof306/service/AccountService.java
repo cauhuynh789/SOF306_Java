@@ -23,7 +23,7 @@ import com.sof306.entity.Accounts;
 import com.sof306.entity.Authorities;
 
 @Service
-public class AccountService  implements UserDetailsService{
+public class AccountService implements UserDetailsService{
 	@Autowired
 	AccountsDAO accountDao;
 
@@ -53,26 +53,28 @@ public class AccountService  implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 		try {
 			Accounts account = accountDao.findById(username).get();
 			// Tạo UserDetails từ Account
 			String password = account.getPassword();
+
 			String[] roles = account.getAuthority().stream()
 				.map(au -> au.getRole().getId())
 				.collect(Collectors.toList()).toArray(new String[0]);
-
-
 	
+
+			
 				Map<String, Object> authentication = new HashMap<>();
 				authentication.put("user", account);
 				byte[] token = (username + ":" + account.getPassword()).getBytes();
 				authentication.put("token", "Basic " + Base64.getEncoder().encodeToString(token));
 				//session.setAttribute("authentication", authentication);
-				
-				
+					
 			return User.withUsername(username)
 					.password(pe.encode(password))
 					.roles(roles).build();
+			
 		} catch (Exception e) {
 			throw new UsernameNotFoundException(username + " not found!");
 		}

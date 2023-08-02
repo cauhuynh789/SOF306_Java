@@ -1,18 +1,19 @@
-package com.sof306.security;
+package com.sof306.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
-import com.sof306.entity.Accounts;
 import com.sof306.service.AccountService;
 
 @Configuration
@@ -49,8 +50,8 @@ public class SecurityConfig {
 
             // Phân quyền sử dụng
             http.authorizeRequests()
-                    .antMatchers("/auth/login").permitAll()
-                     .antMatchers("/rest/accounts").authenticated()
+                     .antMatchers("/auth/login").permitAll()
+                     .antMatchers("/api/account").authenticated()
                      .antMatchers("/api/cart/**").hasRole("CUST")
                       // 401-UNAUTHORIZED when anonymous user tries to access protected URLs
                     .and()
@@ -66,17 +67,25 @@ public class SecurityConfig {
             http.formLogin()
                     .loginPage("/auth/login/form")
                     .loginProcessingUrl("/auth/login") // [/login]
-                    .defaultSuccessUrl("/auth/login/success")
+                    .defaultSuccessUrl("/auth/login/success", false)
                     .failureUrl("/auth/login/error")
-                    .usernameParameter("accountId") // [accountId]
+                    .usernameParameter("username") // [username]
                     .passwordParameter("password"); // [password]
+
             http.rememberMe()
-                    .rememberMeParameter("remember"); // [remember-me]
+                    .rememberMeParameter("remember")
+                    .tokenValiditySeconds(86400);// [remember-me]
 
             // Đăng xuất
             http.logout()
                     .logoutUrl("/auth/logoff") // [/logout]
                     .logoutSuccessUrl("/auth/logoff/success");
+        }
+
+        //	Cho phép truy xuất api từ bên ngoài
+        @Override
+        public void configure(WebSecurity web) throws Exception {
+            web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
         }
     }
 }

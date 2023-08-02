@@ -1,4 +1,4 @@
-package com.sof306.rest;
+package com.sof306.rest.controller;
 
 import java.util.List;
 

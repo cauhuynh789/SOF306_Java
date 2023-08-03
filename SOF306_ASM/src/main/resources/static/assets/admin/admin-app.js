@@ -5,16 +5,16 @@ app.config($routeProvider => {
         templateUrl: "/assets/admin/accounts/index.html",
         controller: "accounts-ctrl"
     })
-    .when("/category", {
-        templateUrl: "/assets/admin/category/index.html?" + Math.random(),
-        controller: "category-ctrl"
+    .when("/books", {
+        templateUrl: "/assets/admin/books/index.html",
+        controller: "books-ctrl"
     })
     .when("/authorize", {
-        templateUrl: "/assets/admin/authority/index.html?" + Math.random(),
+        templateUrl: "/assets/admin/authority/index.html",
         controller: "authority-ctrl"
     })
     .when("/unauthorized", {
-        templateUrl: "/assets/admin/authority/unauthorized.html?" + Math.random(),
+        templateUrl: "/assets/admin/authority/unauthorized.html",
         controller: "authority-ctrl"
     })
     .otherwise({

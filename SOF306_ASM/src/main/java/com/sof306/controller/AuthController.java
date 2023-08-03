@@ -21,7 +21,7 @@ public class AuthController {
 
 	@RequestMapping("/auth/login/form")
 	public String form(){
-		return "login";
+		return "security/login";
 	}
 	
 	@RequestMapping("/auth/login/success")

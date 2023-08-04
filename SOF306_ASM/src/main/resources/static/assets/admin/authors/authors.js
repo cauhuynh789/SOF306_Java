@@ -1,6 +1,6 @@
 let host = "http://localhost:8080/rest";
 const app = angular.module("app", []);
-app.controller("ctrl", ($scope, $http) => {
+app.controller("authors-ctrl", ($scope, $http) => {
     $scope.form = {};
     $scope.items = [];
 

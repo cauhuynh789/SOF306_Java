@@ -16,7 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
@@ -31,12 +34,10 @@ public class Books implements Serializable{
    @Column(name = "Title")
    private String title;
 
-   @JsonIgnore
    @ManyToOne
    @JoinColumn(name = "Authorid", referencedColumnName = "Authorid")
    private Authors author;
 
-   @JsonIgnore
    @ManyToOne
    @JoinColumn(name = "Publisherid", referencedColumnName = "Publisherid")
    private Publishers publisher;
@@ -53,7 +54,6 @@ public class Books implements Serializable{
    @Column(name = "Quantity")
    private int quantity;
 
-   @JsonIgnore
    @ManyToOne
    @JoinColumn(name = "Categoryid", referencedColumnName = "Categoryid")
    private Categories category;
@@ -72,5 +72,9 @@ public class Books implements Serializable{
    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private List<Comments> comments;
    
+	@Override
+	public String toString() {
+		return "";
+	}
    
 }

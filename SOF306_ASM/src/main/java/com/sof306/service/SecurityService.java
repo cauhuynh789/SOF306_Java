@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.sof306.entity.Accounts;
 
-public interface TkService {
+public interface SecurityService {
 	
 	List<Accounts> findAll();
 	Accounts findById(String username);

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.sof306.dao.AccountsDAO;
 import com.sof306.entity.Accounts;
-import com.sof306.service.TkService;
+import com.sof306.service.SecurityService;
 
 @Service
-public class AccountServiceImpl implements TkService {
+public class AccountServiceImpl implements SecurityService {
 	
 	@Autowired
 	private AccountsDAO accDAO;

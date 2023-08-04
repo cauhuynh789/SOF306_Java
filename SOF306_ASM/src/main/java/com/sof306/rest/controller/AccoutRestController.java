@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sof306.entity.Accounts;
-import com.sof306.service.TkService;
+import com.sof306.service.SecurityService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/accounts")
-public class TkRestController {
+public class AccoutRestController {
 	
 	@Autowired
-	private TkService tkService;
+	private SecurityService tkService;
 
 	@GetMapping
 	public ResponseEntity<List<Accounts>> getAll() {

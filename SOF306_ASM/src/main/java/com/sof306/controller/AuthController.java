@@ -3,11 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -25,7 +21,7 @@ public class AuthController {
 
 	@RequestMapping("/auth/login/form")
 	public String form(){
-		return "login";
+		return "security/login";
 	}
 	
 	@RequestMapping("/auth/login/success")
@@ -43,7 +39,7 @@ public class AuthController {
             }
          }
 
-		if(authList.contains("ROLE_ADMIN")){
+		if(authList.contains("ROLE_DIRE")){
 			return "redirect:/auth/index";
 		} 
 		else{

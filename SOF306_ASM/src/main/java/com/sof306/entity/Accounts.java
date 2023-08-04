@@ -3,7 +3,6 @@ package com.sof306.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,5 +58,5 @@ public class Accounts implements Serializable{
 	   
 	   @JsonIgnore
 	   @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-	   List<Authorities> authorities;
+	   private List<Authorities> authority;
 }

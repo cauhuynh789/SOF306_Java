@@ -18,6 +18,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -31,11 +34,11 @@ public class Orders implements Serializable {
    @Column(name = "Orderid")
    private int orderId;
 
-   @JsonIgnore
    @ManyToOne
    @JoinColumn(name = "Accountid", referencedColumnName = "Accountid")
    private Accounts account;
 
+   @Temporal(TemporalType.DATE)
    @Column(name = "Orderdate")
    private Date orderDate;
 
@@ -43,6 +46,6 @@ public class Orders implements Serializable {
    private BigDecimal totalAmount;
    
    @JsonIgnore
-   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+   @OneToMany(mappedBy = "order")
    private List<OrderDetails> orderDetails;
 }

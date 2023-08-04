@@ -40,7 +40,7 @@ app.controller("ctrl", ($scope, $http) => {
         var url = `${host}/accounts/${$scope.form.accountId}`;
         $http.put(url, item).then(resp => {
             var index = $scope.items.findIndex(item => item.accountId == $scope.form.accountId);
-            $scope.items[index] = resp.data;
+            $scope.items[index] = item;
             console.log("Success", resp);
         }).catch(error => {
             console.log("Error", error);

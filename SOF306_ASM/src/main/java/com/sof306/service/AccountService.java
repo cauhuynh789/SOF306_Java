@@ -10,15 +10,11 @@ import java.util.stream.Collectors;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.sof306.dao.AccountsDAO;
@@ -26,10 +22,8 @@ import com.sof306.dao.AuthorityDAO;
 import com.sof306.entity.Accounts;
 import com.sof306.entity.Authorities;
 
-import antlr.collections.impl.LList;
-
 @Service
-public class AccountService  implements UserDetailsService{
+public class AccountService implements UserDetailsService{
 	@Autowired
 	AccountsDAO accountDao;
 
@@ -59,26 +53,28 @@ public class AccountService  implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 		try {
 			Accounts account = accountDao.findById(username).get();
 			// Tạo UserDetails từ Account
 			String password = account.getPassword();
-			String[] roles = account.getAuthorities().stream()
+
+			String[] roles = account.getAuthority().stream()
 				.map(au -> au.getRole().getId())
 				.collect(Collectors.toList()).toArray(new String[0]);
-
-
 	
+
+			
 				Map<String, Object> authentication = new HashMap<>();
 				authentication.put("user", account);
 				byte[] token = (username + ":" + account.getPassword()).getBytes();
 				authentication.put("token", "Basic " + Base64.getEncoder().encodeToString(token));
 				//session.setAttribute("authentication", authentication);
-				
-				
+					
 			return User.withUsername(username)
 					.password(pe.encode(password))
 					.roles(roles).build();
+			
 		} catch (Exception e) {
 			throw new UsernameNotFoundException(username + " not found!");
 		}

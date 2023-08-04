@@ -30,10 +30,12 @@ public class Authorities implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne 
-	@JoinColumn(name = "Accountid", referencedColumnName = "Accountid")
+	@JoinColumn(name = "Accountid")
 	private Accounts account;
 	
+	@JsonIgnore
 	@ManyToOne  
-	@JoinColumn(name = "Roleid", referencedColumnName = "Roleid")
+	@JoinColumn(name = "Roleid")
 	private Roles role;
+	
 }

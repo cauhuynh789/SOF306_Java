@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+  <head>
+    <title>FPT Books</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/css/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/css/style.css">
+  </head>
+  <body>
+
+  	<div class="container-fluid px-md-5  pt-4 pt-md-5">
+			<div class="row justify-content-between">
+				<div class="col-md-8 order-md-last">
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<a class="navbar-brand" th:href="@{/home/index}">FPT<span>BOOKS</span> <small>Thế Giới Sách Dành Cho Bạn</small></a>
+						</div>
+						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+							<form action="#" class="searchform order-lg-last">
+			          <div class="form-group d-flex">
+			            <input type="text" class="form-control pl-3" placeholder="Tìm Kiếm">
+			            <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+			          </div>
+			        </form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex">
+					<div class="social-media">
+		    		<p class="mb-0 d-flex">
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+		    		</p>
+	        </div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+			<div th:replace = "/layout/_menu.html"></div>
+		</nav>
+    
+		<div th:replace = "${main}"></div>
+
+    <footer class="ftco-footer">
+		<div th:replace = "/layout/_footer.html"></div>
+	</footer>
+    
+  
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/jquery.easing.1.3.js"></script>
+  <script src="/assets/js/jquery.waypoints.min.js"></script>
+  <script src="/assets/js/jquery.stellar.min.js"></script>
+  <script src="/assets/js/owl.carousel.min.js"></script>
+  <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assets/js/jquery.animateNumber.min.js"></script>
+  <script src="/assets/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/assets/js/google-map.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>  
+  </body>
+</html>

@@ -7,7 +7,7 @@ app.controller("ctrl", ($scope, $http) => {
         $scope.form = {gender: true, photo: "default.jpg", status: true, roleId: true};
     }
     $scope.load_all = () => {
-        var url = `${host}/accounts`    ;
+        var url = `${host}/categories`    ;
         $http.get(url).then(resp => {
             $scope.items = resp.data;
             console.log("Success", resp);
@@ -15,8 +15,8 @@ app.controller("ctrl", ($scope, $http) => {
             console.log("Error", error);
         });
     }
-    $scope.edit = (accountId) => {
-        var url = `${host}/accounts/${accountId}`;
+    $scope.edit = (categoryId) => {
+        var url = `${host}/categories/${categoryId}`;
         $http.get(url).then(resp => {
             $scope.form = resp.data;
             console.log("Success", resp);
@@ -26,7 +26,7 @@ app.controller("ctrl", ($scope, $http) => {
     }
     $scope.create = () => {
         var item = angular.copy($scope.form);
-        var url = `${host}/accounts`;
+        var url = `${host}/categories`;
         $http.post(url, item).then(resp => {
             $scope.items.push(item);
             $scope.reset();
@@ -37,19 +37,19 @@ app.controller("ctrl", ($scope, $http) => {
     }
     $scope.update = () => {
         var item = angular.copy($scope.form);
-        var url = `${host}/accounts/${$scope.form.accountId}`;
+        var url = `${host}/categories/${$scope.form.categoryId}`;
         $http.put(url, item).then(resp => {
-            var index = $scope.items.findIndex(item => item.accountId == $scope.form.accountId);
+            var index = $scope.items.findIndex(item => item.categoryId == $scope.form.categoryId);
             $scope.items[index] = resp.data;
             console.log("Success", resp);
         }).catch(error => {
             console.log("Error", error);
         });
     }
-    $scope.delete = (accountId) => {
-        var url = `${host}/accounts/${$scope.form.accountId}`;
+    $scope.delete = (categoryId) => {
+        var url = `${host}/categories/${$scope.form.categoryId}`;
         $http.delete(url).then(resp => {
-            var index = $scope.items.findIndex(item => item.accountId == $scope.form.accountId);
+            var index = $scope.items.findIndex(item => item.categoryId == $scope.form.categoryId);
             $scope.items.splice(index, 1);
             $scope.reset();
             console.log("Success", resp);

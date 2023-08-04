@@ -9,12 +9,12 @@ public class HomeController {
 
 	@RequestMapping("/auth/index")
 	public String index(Model model){
-
-		return "admin/index";
+		return "redirect:/assets/admin/index.html";
 	}
 
 	@RequestMapping("/home/index")
 	public String index(){
-		return "/index";
+		return "admin/index";
 	}
+
 }

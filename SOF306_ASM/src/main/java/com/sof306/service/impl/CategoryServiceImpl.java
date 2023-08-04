@@ -1,11 +1,13 @@
 package com.sof306.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sof306.dao.CategoriesDAO;
+import com.sof306.entity.Accounts;
 import com.sof306.entity.Categories;
 import com.sof306.service.CategoryService;
 
@@ -35,4 +37,12 @@ public class CategoryServiceImpl implements CategoryService {
 		cateDAO.deleteById(categoryId);
 	}
 
+	@Override
+	public Categories findById(String categoryId) {
+		Optional<Categories> optional = cateDAO.findById(categoryId);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
 }

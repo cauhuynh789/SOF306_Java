@@ -1,6 +1,8 @@
 package com.sof306.service;
 
 import java.util.List;
+
+import com.sof306.entity.Books;
 import com.sof306.entity.Categories;
 
 public interface CategoryService {
@@ -13,4 +15,5 @@ public interface CategoryService {
 
 	void delete(String categoryId);
 
+	Categories findById(String categoryId);
 }

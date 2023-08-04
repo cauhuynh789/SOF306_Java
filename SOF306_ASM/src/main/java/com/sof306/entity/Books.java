@@ -16,10 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
@@ -72,9 +69,9 @@ public class Books implements Serializable{
    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private List<Comments> comments;
    
-	@Override
-	public String toString() {
-		return "";
-	}
+//   @Override
+//   public String toString() {
+//	   return "";
+//   }
    
 }

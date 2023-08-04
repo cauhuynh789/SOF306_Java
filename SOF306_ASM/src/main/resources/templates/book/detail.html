@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{/layout/index.html :: dynamic(~{::main})}"
->
+  th:replace="~{/layout/index.html :: dynamic(~{::main})}">
+  
   <body>
     <main>
 		<section class="hero-wrap hero-wrap-2" style="background-image: url('/assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
@@ -22,32 +22,66 @@
           <div class="row">
             <div class="col-lg-9 ftco-animate">
               <div class="row">
-				
-				<div class="col-md-4 d-flex">
-					<div class="book-wrap">
-						<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-1.jpg);">
-							<div class="in-text">
-								<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-									<span class="flaticon-shopping-cart"></span>
-								</a>
-								<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-									<span class="flaticon-heart-1"></span>
-								</a>
-								<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-									<span class="flaticon-search"></span>
-								</a>
-								<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-									<span class="flaticon-visibility"></span>
-								</a>
-							</div>
-						</div>
-						<div class="text px-4 py-3 w-100">
-							<p class="mb-2"><span class="price">$12.00</span></p>
-							<h2><a href="#">You Are Your Only Limit</a></h2>
-							<span class="position">By John Nathan Muller</span>
-						</div>
-					</div>
+                <div class="col-md-12 col-lg-12 d-flex">
+                  <div class="book-wrap d-lg-flex">
+                    <div class="img d-flex justify-content-end" th:style="'background-image: url(/assets/images/books/' + ${item.bookPhoto} + ');'">
+                      <div class="in-text">
+                        <a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
+                          <span class="flaticon-shopping-cart"></span>
+                        </a>
+                        <!-- <a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
+                          <span class="flaticon-heart-1"></span>
+                        </a>
+                        <a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
+                          <span class="flaticon-search"></span>
+                        </a> -->
+                        <!-- <a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
+                          <span class="flaticon-visibility"></span>
+                        </a> -->
+                      </div>
+                    </div>
+                    <div class="text p-4"> 
+                      <h2><a href="#">[[${item.title}]]</a></h2>
+                      <p class="mb-2"><span class="price">[[${item.price}]]$</span></p>
+                      <span class="position">[[${item.author.authorName}]]</span>
+                      <p class="text-black">[[${item.description}]]</p>
+                      <div class="row" style="margin-top: 100px;">
+                        <div class="col-sm-6">
+                          <button type="button" class="btn btn-outline-danger" style="width: 100%;">Thêm vào Giỏ Hàng</button>
+                        </div>
+                        <div class="col-sm-6">
+                          <button type="button" class="btn btn-danger" style="width: 100%;">Mua Ngay</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  
+		<article class="postcard dark green">
+			<a class="postcard__img_link" href="#"> 
+				<img class="postcard__img" th:src="@{'/assets/images/authors/' + ${item.author.authorPhoto}}"/>
+      </a>                                  
+			<div class="postcard__text">
+				<h1 class="postcard__title green"><a href="#">[[${item.author.authorName}]]</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00"> 
+						<i class="fas fa-calendar-alt mr-2"></i>[[${item.author.authorBio}]] [[${item.author.authorPhoto}]]
+					</time>
 				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+				<!-- <ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+					<li class="tag__item play green">
+						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+					</li>
+				</ul> -->
+			</div>
+      
+		</article>
+                </div>
 			  </div>
               <div class="row mt-5"></div>
             </div>
@@ -79,19 +113,8 @@
 
               <div class="sidebar-box ftco-animate">
                 <h3>Tác Giả</h3>
-                <ul class="top">
-                  <li><a href="#">John Nathan Muller</a></li>
-                  <li><a href="#">Sandra Park</a></li>
-                  <li><a href="#">Laura Preston</a></li>
-                  <li><a href="#">John Doe</a></li>
-                  <li><a href="#">Mc Gregor Douglas</a></li>
-                  <li><a href="#">Atom Night</a></li>
-                  <li><a href="#">Danny Green</a></li>
-                  <li><a href="#">Sonya Lopez</a></li>
-                  <li><a href="#">Archie Bochs</a></li>
-                  <li><a href="#">Jelian Coward</a></li>
-                  <li><a href="#">Mark Hatton</a></li>
-                  <li><a href="#">Madison Mc Collen</a></li>
+                <ul class="top" th:each="author : ${listAuthor}">
+                  <li><a href="#">[[${author.authorName}]]</a></li>
                 </ul>
               </div>
             </div>

@@ -64,7 +64,7 @@
             <!-- Đây là một thẻ <input> ẩn, được sử dụng để tải lên tập tin ảnh -->
             <input type="file"  style="display:none" id="fileInput" ng-model="file">
       
-            <div class="mb-3 mt-3">
+            <!--<div class="mb-3 mt-3">
                 <label>Giới Tính:</label> <br>
                 <div class="form-check form-check-inline">
                     <input ng-model="form.gender" type="radio" ng-value="true" name="gender"
@@ -102,33 +102,20 @@
                         class="form-check-input" id="inputstatusNo">
                     <label class="form-check-label" for="inputstatusNo">Khóa</label>
                 </div>
-            </div>
+            </div>-->
             
         </div>
+        <br><br><br>
         <div class="col-sm-9">
+            <br>
             <div class="form-floating mb-2">
-                <input ng-model="form.accountId" type="text" class="form-control input-sm" id="accountId" placeholder="Nhập">
-                <label for="accountId">Tên Tài Khoản:</label>
+                <input ng-model="form.categoryId" type="text" class="form-control input-sm" id="categoryId" placeholder="Nhập">
+                <label for="categoryId">Mã Thể Loại:</label>
             </div>
+            <br>
             <div class="form-floating mb-2">
-                <input ng-model="form.password" type="password" class="form-control" id="password" placeholder="Nhập">
-                <label for="password">Mật Khẩu:</label>
-            </div>
-            <div class="form-floating mb-2">
-                <input ng-model="form.email" type="email" class="form-control" id="email" placeholder="Nhập">
-                <label for="email">Email:</label>
-            </div>
-            <div class="form-floating mb-2">
-                <input ng-model="form.fullName" type="text" class="form-control" id="fullName" placeholder="Nhập">
-                <label for="ful">Họ Tên:</label>
-            </div>
-            <div class="form-floating mb-2">
-                <input ng-model="form.address" type="text" class="form-control" id="address" placeholder="Nhập">
-                <label for="address">Địa Chỉ:</label>
-            </div>
-            <div class="form-floating mb-2">
-                <input ng-model="form.phone" type="text" class="form-control" id="phone" placeholder="Nhập">
-                <label for="phone">SĐT:</label>
+                <input ng-model="form.categoryName" type="text" class="form-control" id="categoryName" placeholder="Nhập">
+                <label for="categoryName">Tên Thể Loại:</label>
             </div>
             <!-- <div class="col-md-12">
                 <label for="inputImage" class="form-label">Image</label>
@@ -145,26 +132,18 @@
         <hr/>
         <table style="width: 100%;" border="1" class="table table-hover table-striped ">
             <tr>
-                <th>Tài Khoản</th>
-                <th>Email</th>
-                <th>Họ Tên</th>
-                <th>Giới Tính</th>
-                <th>SĐT</th>
-                <th>Địa Chỉ</th>
-                <th>Trạng Thái</th>
+                <th>Mã Thể Loại</th>
+                <th>Tên Thể Loại</th>
+                <th>Hình Ảnh</th>
                 <th></th>
             </tr>
             <tr ng-repeat="st in items">
-                <td>{{st.accountId}}</td>
-                <td>{{st.email}}</td>
-                <td>{{st.fullName}}</td>
-                <td>{{st.gender ? 'Nam' : 'Nữ'}}</td>
-                <td>{{st.phone}}</td>
-                <td>{{st.address}}</td>
-                <td>{{st.status ? 'Hoạt Động' : 'Khóa'}}</td>
+                <td>{{st.categoryId}}</td>
+                <td>{{st.categoryName}}</td>
+                <td>{{st.categoryPhoto}}</td>
                 <td>
-                    <button ng-click="edit(st.accountId)" class="btn btn-outline-info">Edit</button>
-                    <button ng-click="delete(st.accountId)" class="btn btn-outline-danger">Delete</button>
+                    <button ng-click="edit(st.categoryId)" class="btn btn-outline-info">Edit</button>
+                    <button ng-click="delete(st.categoryId)" class="btn btn-outline-danger">Delete</button>
                 </td>
             </tr>
         </table>
